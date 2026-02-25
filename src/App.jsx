@@ -23,15 +23,8 @@ const App = () => {
 
   // DELETE :
   const deleteBlog = async (id) => {
-    console.log(id);
-    const response = await supabase.from("blog").delete().eq("id", id).select();
+    await supabase.from("blog").delete().eq("id", id).select();
     setBlogs(blogs.filter((ele) => ele.id !== id));
-    // const fetchData = async () => {
-    //   const { data } = await supabase.from("blog").select();
-    //   console.log(data);
-    //   setBlogs(data);
-    // };
-    // fetchData();
   };
 
   const router = createBrowserRouter([

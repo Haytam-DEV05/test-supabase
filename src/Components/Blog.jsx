@@ -3,13 +3,15 @@ import { useNavigate } from "react-router";
 export default function Blog({ data, deleteBlog }) {
   const navigate = useNavigate();
   const handleBtnDelete = (id) => {
-    deleteBlog(id);
+    if (confirm("are you sure?")) {
+      deleteBlog(id);
+    }
   };
 
   const handleBtnUpdate = (id) => {
     navigate(`/update/${id}`);
   };
-  
+
   return (
     <div className="blog bg-gray-300 shadow-md p-5">
       <h2 className="text-[20px] font-medium">{data.title}</h2>
