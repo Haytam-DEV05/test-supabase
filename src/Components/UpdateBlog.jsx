@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import supabase from "../utils/supabase";
 import { Navigate, useNavigate, useParams } from "react-router";
 
-export default function UpdateBlog() {
+export default function UpdateBlog({ fetchData }) {
   const navigate = useNavigate();
   const { id } = useParams();
   const [formInputs, setFormInputs] = useState({
@@ -24,6 +24,7 @@ export default function UpdateBlog() {
     e.preventDefault();
     await supabase.from("blog").update(formInputs).eq("id", id);
     alert("update the bloge successfuly ");
+    fetchData();
     navigate("/");
   };
 
@@ -54,7 +55,7 @@ export default function UpdateBlog() {
             ></textarea>
           </div>
           <button className="bg-green-400 cursor-pointer px-4 py-1 rounded-lg text-white">
-            create
+            Update
           </button>
         </form>
       </div>

@@ -11,13 +11,12 @@ import UpdateBlog from "./Components/UpdateBlog";
 const App = () => {
   const [blogs, setBlogs] = useState([]);
 
+  const fetchData = async () => {
+    const { data } = await supabase.from("blog").select();
+    setBlogs(data);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await supabase.from("blog").select();
-      if (data) {
-        setBlogs(data);
-      }
-    };
     fetchData();
   }, []);
 
@@ -36,8 +35,8 @@ const App = () => {
           index: true,
           element: <ListBlog blogs={blogs} deleteBlog={deleteBlog} />,
         },
-        { path: "createBlog", element: <CreateBlog /> },
-        { path: "update/:id", element: <UpdateBlog /> },
+        { path: "createBlog", element: <CreateBlog fetchData={fetchData} /> },
+        { path: "update/:id", element: <UpdateBlog fetchData={fetchData} /> },
       ],
     },
   ]);

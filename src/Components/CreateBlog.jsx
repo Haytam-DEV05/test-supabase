@@ -1,8 +1,10 @@
+// ===================================
 import { useState } from "react";
 import supabase from "../utils/supabase";
 import { useNavigate } from "react-router";
+// ===================================
 
-export default function CreateBlog() {
+export default function CreateBlog({ fetchData }) {
   const navigate = useNavigate();
   const [formInputs, setFormInputs] = useState({
     title: "",
@@ -23,6 +25,7 @@ export default function CreateBlog() {
           return;
         }
         if (data) {
+          fetchData();
           navigate("/");
         }
       };

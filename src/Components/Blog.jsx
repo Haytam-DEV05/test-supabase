@@ -15,7 +15,7 @@ export default function Blog({ data, deleteBlog }) {
   return (
     <div className="blog bg-gray-300 shadow-md p-5">
       <h2 className="text-[20px] font-medium">{data.title}</h2>
-      <p className="text-[15px] font-extralight my-2">{data.description}</p>
+      <p className="text-[15px] font-extralight my-2 wrap-break-word">{data.description}</p>
       <div className="space-x-2 mt-2">
         <button
           onClick={() => handleBtnUpdate(data.id)}
